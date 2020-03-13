@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mohan/Projects/DatingApp/DatingApp.API/DatingApp.API.csproj": {}
+    "/Users/mohan/Projects/GitHub/DatingApp/DatingApp.API/DatingApp.API.csproj": {}
   },
   "projects": {
-    "/Users/mohan/Projects/DatingApp/DatingApp.API/DatingApp.API.csproj": {
+    "/Users/mohan/Projects/GitHub/DatingApp/DatingApp.API/DatingApp.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mohan/Projects/DatingApp/DatingApp.API/DatingApp.API.csproj",
+        "projectUniqueName": "/Users/mohan/Projects/GitHub/DatingApp/DatingApp.API/DatingApp.API.csproj",
         "projectName": "DatingApp.API",
-        "projectPath": "/Users/mohan/Projects/DatingApp/DatingApp.API/DatingApp.API.csproj",
+        "projectPath": "/Users/mohan/Projects/GitHub/DatingApp/DatingApp.API/DatingApp.API.csproj",
         "packagesPath": "/Users/mohan/.nuget/packages/",
-        "outputPath": "/Users/mohan/Projects/DatingApp/DatingApp.API/obj/",
+        "outputPath": "/Users/mohan/Projects/GitHub/DatingApp/DatingApp.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/mohan/.nuget/NuGet/NuGet.Config"

@@ -2,6 +2,13 @@
 Two projects
 1.WebApi to serve dating app
 
+Major Tips
+***********
+To find and kill background process
+lsof -i @localhost:5000
+kill -9 <<PID>>
+
+
 Prerequisite
 ************
 
