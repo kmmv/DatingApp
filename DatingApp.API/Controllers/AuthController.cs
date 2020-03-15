@@ -6,6 +6,7 @@ using DatingApp.API.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DatingApp.API.Dtos;
+using DatingApp.API.Models;
 
 namespace DatingApp.API.Controllers
 {
@@ -29,6 +30,13 @@ namespace DatingApp.API.Controllers
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
               if (await _repo.UserExists(userForRegisterDto.Username))  return BadRequest("Username already exists");
+
+            var userToCreate = new User
+            {
+                Username = userForRegisterDto.Username
+            };
+ 
+            var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
             return StatusCode(201); 
 
