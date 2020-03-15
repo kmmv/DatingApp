@@ -10,9 +10,16 @@ Advantages - minimize duplicate query logic, decouple application
 ************** Lab start
 
 Step1: Create User in model class
-Step2 : Update DB using migration: dotnet ef migrations add AddedUserEntity
+Step2 : Add migration files to the project$dotnet ef migrations add AddedUserEntity
+        -- Now the migrations files for the users will be Added
+Step3: Update DB using migration $dotnet ef database update
 
-
-
-Step1 : Create IAuthRepository
-Step2 : Implement AuthoRepository (Login, Register, UserExists) , Hash/Salt
+-- Next the interface will be the Repository pattern
+Step4 : Create IAuthRepository
+Step5 : Implement Concreate class for the IAuthRepository
+          - AuthoRepository (Login, Register, UserExists) , Hash/Salt
+Step6 : Registering the services in the Startup class
+        --services.AddScoped<IAuthRepository, AuthRepository>();
+Step7 : Create a AuthController and inherit from ControllerBase
+Step8 : Create Dtos folder and Create UserForRegisterDto
+Step9 : Create Register method with UserForRegisterDto
