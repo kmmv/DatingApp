@@ -49,7 +49,6 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost("login")]
-
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
 
