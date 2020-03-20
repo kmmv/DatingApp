@@ -3,3 +3,6 @@
 /obj
 .vscode
 *.db
+appsettings.json
+appsettings.Development.json
+

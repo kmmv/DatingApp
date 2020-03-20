@@ -31,6 +31,7 @@ Step10: Debugger with postman
 
 Token Authentication (Refer: 34-Token authentication )
 ********************
+Usage of token: The server doesn't need to go to database to validate the user
 JWT - JSON Web Tokens - structure (Header / Payload / Secret) - can be decoded by anyone
 Header contains the info about the encryption type
 Payload contains the info
@@ -51,3 +52,12 @@ Step4: inside the post method
             -and return the result from the WriteToken
 Step5: Test login funciton using PostMan and then the token will be retuned back
 Step6:Goto https://jwt.io/ and paste the token to see the decoded information
+
+Authentication Middleware
+*************************
+Everywhere we need to authorize
+Lab
+***
+    Step1:Add PM->Microsoft.AspNetCore.Authentication.JwtBearer
+    Step2:Add Authorize attribute in ValuesController
+    Step3:How to Authentication, that is Middleware services.AddAuthentication
