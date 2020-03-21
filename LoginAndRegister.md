@@ -92,3 +92,11 @@ Lab: 47 Component Communication Child to Parent using Output properties
 *. Implement this.cancelRegister.emit(false); inside a new method named cancel on the child componnet
 *. Add a cancelregister event handler on the parent(home) component - <app-register  (cancelRegister)="cancelRegisterMode($event)" 
 *. Implement cancelRegisterMode on the parent component
+
+Lab: 48 Adding the register method
+***
+*.create register method on the auth service
+*.import the auth service on the register component
+*.On the register component to call this.authService(this.model).subscribe Note:the service method is observable hence subscribe
+
+
