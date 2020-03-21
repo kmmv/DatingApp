@@ -8,6 +8,7 @@ import { AuthService } from '../_services/auth.service';
 })
 export class NavComponent implements OnInit {
 
+// km :model(variable) name of type any with object passed to it
   model: any = {};
 
   constructor( private authService: AuthService) { }

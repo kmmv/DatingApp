@@ -24,6 +24,7 @@ namespace DatingApp.API.Controllers
         }
 
     
+        [AllowAnonymous]
         // GET api/values
         //km:IActrionResult will return HTTP return values
         [HttpGet]
