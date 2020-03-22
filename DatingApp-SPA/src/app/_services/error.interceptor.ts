@@ -22,6 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                 // km: 500 type error
                 if (error instanceof HttpErrorResponse) {
+                    // km: Application-Error -this needs to match the error we are getting on browser
                     const applicationError = error.headers.get('Application-Error');
                     if (applicationError) {
                         return throwError(applicationError);
