@@ -1,2 +1,23 @@
 006 3rd Party components
 ************************
+For notifications : Go to site https://alertifyjs.com - this contains some simple css and
+javascript for event notifications
+
+Todo: Install alertify and create a angular service wrapper for alertify and inject
+the angular service wrapper to our application
+
+lab - 57 Wrapping 3rd party libraries
+***
+
+*.go to client app terminal -  npm install alertifyjs
+*.goto styles.css and import alertify.min.css and bootstreap.min.css
+*.goto services and create new services named alertify (2 files are created)
+*.while importing there will be a warning
+      - resolve this by creating typings.d.ts inside src folder
+      - add using declare module 'alertifyjs to the typings.d.ts
+      - goto tsconfig.json and add typeRoots to point src/typings.d.ts
+      - warning will be goine
+*. implement AlertifyService -  implement methods confirm, success, warning, message
+
+- use the alertify services
+*. goto nav.component.ts and register.component.ts and change all the console.log to appropriate alertify messages
