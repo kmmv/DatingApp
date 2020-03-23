@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 // km:services needed injectable decorator to
 @Injectable({
@@ -8,6 +9,8 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
   baseUrl = 'http://localhost:5000/api/auth/';
+  jwtHelper = new JwtHelperService();
+  decodedToken: any;
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +24,8 @@ export class AuthService {
           // localstorage stored the item on the browser without expiration but sessionstorage expires when the browser tab
           // is closed
           localStorage.setItem('token', user.token);
+          this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          console.log(this.decodedToken);
         }
       })
     );
@@ -30,4 +35,12 @@ export class AuthService {
   register(model: any) {
     return this.http.post(this.baseUrl + 'register', model);
   }
+
+  loggedIn() {
+    // km: We use localStorage as it is persistent storage in the browser that will still be available after a browser refresh
+    const token = localStorage.getItem('token');
+    // km: if token is not expired - checking using @auth0/angular-jwt
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
 }
