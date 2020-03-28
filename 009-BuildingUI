@@ -16,3 +16,10 @@ lab - 86 Creating Member Cards to display on our Members list page
 *. pass the user from the memberlist component inside <app member-card> component
       -from memeber-list component - Note the [user] is inside the <> braces
       -   <app-member-card [user]="user"></app-member-card>
+
+lab 87 and 88 - styling member-card component
+
+Note: issue when the members are not displayed while login because the auth token is not send
+
+lab 89- Using Auth0 jwtModule to send up jwt token automatically.
+***
