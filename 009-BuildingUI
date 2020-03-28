@@ -10,7 +10,9 @@ lab - 84 Creating another Angular Service
 
 lab - 86 Creating Member Cards to display on our Members list page
 ***
-*.create member-card component inside members/member-list
+*.  create member-card component inside members/member-list
 *. create an Input user to bring the user from parent component which is member-list
-*. complete member-card component using bootstrap card 
-*.
+*. complete member-card component using bootstrap card
+*. pass the user from the memberlist component inside <app member-card> component
+      -from memeber-list component - Note the [user] is inside the <> braces
+      -   <app-member-card [user]="user"></app-member-card>

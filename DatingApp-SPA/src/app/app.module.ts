@@ -17,6 +17,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AlertifyService } from './_services/alertify.service';
 import { RouterModule } from '@angular/router';
 import { appRoutes} from './routes';
+import { MemberCardComponent } from './members/member-card/member-card.component';
 
 @NgModule({
    declarations: [
@@ -26,7 +27,8 @@ import { appRoutes} from './routes';
       RegisterComponent,
       MemberListComponent,
       ListsComponent,
-      MessagesComponent
+      MessagesComponent,
+      MemberCardComponent
    ],
    imports: [
       BrowserModule,
