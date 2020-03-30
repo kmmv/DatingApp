@@ -54,3 +54,10 @@ and it will not work in this instance by adding them directly to the component c
   border-top: 1px solid #eee;
   padding: 15px 0;
 }
+
+
+/* style for the gallery images*/
+.ngx-gallery { 
+  display: inline-block; 
+  margin-bottom: 20px; 
+}

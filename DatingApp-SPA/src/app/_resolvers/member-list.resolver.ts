@@ -25,6 +25,7 @@ export class MemberListResolver implements Resolve<User[]> {
                 this.alertify.error('Problem retrieving data');
                 // navigate back to home in case of error
                 this.router.navigate(['/home']);
+                // of is the type observable
                 return of(null);
             })
         );

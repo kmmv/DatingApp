@@ -60,6 +60,7 @@ lab 93: Using Route Resolvers to retrieve data
 ***
 -We have to eliminate the safe navigation operators {{user?.lookingFor}} when data is not available
 - before the route is not activated. This is resolved using route resolvers A resolver contains code -  - which is executed when a link has been clicked and before a component is loaded.
+- return of - of is the type of observable
 *. create a folder named _resolvers inside the app folder.
 *. create a file named member-detail.resolver.ts
 *. bringin Injectable and complete member-detail.resolver.ts
@@ -73,4 +74,17 @@ lab 93: Using Route Resolvers to retrieve data
 *.remove all the safe navigation operators from the member-detail.component.html
 *. we have to add resolver to the member-list-page
 *. copy the member-detail.resolver and create member-list.resolver
-*.
+*. goto the routes.ts and add the resolve to the MemberListComponent
+*. goto app.module.ts and add MemberListResolver
+*. goto member-list.component, bringin ActivateRoute on the constructor
+*
+
+lab 94: Adding a photo gallery to our application
+***
+*. https://www.npmjs.com/package/ngx-gallery to find the documentaion
+*. install using the command : npm install @kolkov/ngx-gallery
+*. goto app.module.ts and import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+*. on the app.module.ts add NgxGalleryModule  to the imports
+    - Note the order  NgxGalleryModule created an error 'Renderer2', so I re-ordered
+*. complete the member-detail.component using galleryOptions and galleryImages
+*. on the member-detail.component add <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
