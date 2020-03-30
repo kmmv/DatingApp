@@ -1,0 +1,19 @@
+010 - Updating Resources
+************************
+Create a component to edit profile
+Candeactivate route guard - protect changes
+@ViewChild decorator
+Persisting changes on the API
+
+lab 97 Creating a Member Edit component
+***
+*. creating member-edit inside members folder
+*. goto app.module.ts and add MemberEditComponent
+*. goto routes.ts and and add path: 'member/edit ' route
+*. goto nav.component.ts and add  <a class="dropdown-item" [routerLink]="['member/edit']" ><i class="fa fa-user"></i>Edit Profile</a>
+*. Need to bring currently login user details to the member-edit MemberEditComponent
+        - for this go to resolvers and create a member-edit.resolver.ts
+*. on the member-edit.resolver.ts add authService for accessing the token
+*. complete the resolver by adding this.authService.decodedToken.name.id
+*. goto app.module.ts and add MemberEditResolver
+*. add the resolver on the Routes.ts
