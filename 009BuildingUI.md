@@ -87,4 +87,11 @@ lab 94: Adding a photo gallery to our application
 *. on the app.module.ts add NgxGalleryModule  to the imports
     - Note the order  NgxGalleryModule created an error 'Renderer2', so I re-ordered
 *. complete the member-detail.component using galleryOptions and galleryImages
-*. on the member-detail.component add <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+*. on the member-detail.component add <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+* add styles in styles.css
+            .ngx-gallery {
+                display: inline-block;
+                margin-bottom: 20px;
+              }
+
+  Note: Add   "no-string-literal" : false to tslint.json to disable data['user'] error
