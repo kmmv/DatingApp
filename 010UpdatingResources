@@ -53,4 +53,18 @@ lab 100 Adding a Candeactivate route guard
 
 lab 101- Persisting the Member updateUser
 ***
-*. 
+*. Goto the API project
+*. Add new UserforUpdateDtop inside Dtos for the change/update fields for member-edit
+*. Create map on the AutoMapperProfile,cs    CreateMap<UserForUpdateDto, User>();
+*. Create and complete put method - UpdateUser on the UserController
+*. Test the put method on Postman first - we always check with Postman to see the API side is okay
+ - If the postman is showing 415 unsupported media type  - add the content-type to applciation/json
+ - https://stackoverflow.com/questions/42670413/unsupported-media-type-in-postman
+
+
+- use the browser to update the member profile
+lab - 102 Finishing off the Member edit component
+***
+*. create 'updateUser' on the user.service
+*. bring userService and authService on to the member-edit.component
+*. invoke this.userService.updateUser from updateUser
