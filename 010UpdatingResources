@@ -48,3 +48,9 @@ lab 100 Adding a Candeactivate route guard
     -The above steps will add a message confirming whether the user wants to lose changes by navigating
 - but if the browser tab is closed, angular hasn't go any control of this
 - so we can do some workaround like the following
+*. goto member-edit.component.ts
+      -- add @HostListener('window:beforeunload', ['$event']) and unLoadNotification($event: any) {
+
+lab 101- Persisting the Member updateUser
+***
+*. 

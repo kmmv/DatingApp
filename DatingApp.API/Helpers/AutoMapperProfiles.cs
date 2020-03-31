@@ -15,6 +15,7 @@ namespace DatingApp.API.Helpers
                     .ForMember(dest =>dest.PhotoUrl, opt => 
                                 // Map from is from the photos propery of our users and (users's main photo) the url of the photo
                                 opt.MapFrom(src=> src.Photos.FirstOrDefault(p =>p.IsMain).Url))
+                                // CalculateAge is defined on the Extensions inside Helper folder
                     .ForMember(dest =>dest.Age, opt => 
                                 opt.MapFrom(src=> src.DateOfBirth.CalculateAge()));
 
@@ -24,8 +25,12 @@ namespace DatingApp.API.Helpers
                     .ForMember(dest =>dest.Age, opt => 
                                 opt.MapFrom(src=> src.DateOfBirth.CalculateAge()));
 
+          
 
-           CreateMap<Photo, PhotosForDetailedDto>();       
+
+           CreateMap<Photo, PhotosForDetailedDto>();  
+             // the following map is used to persist changes on the member update user 
+           CreateMap<UserForUpdateDto, User>();     
        }
     }
 }
