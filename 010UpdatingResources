@@ -17,3 +17,34 @@ lab 97 Creating a Member Edit component
 *. complete the resolver by adding this.authService.decodedToken.name.id
 *. goto app.module.ts and add MemberEditResolver
 *. add the resolver on the Routes.ts
+*. goto member-edit.component and add
+       - this.route.data.subscribe( data => { this.user = data['user'];
+*. goto member-edit component.html and add {{user.knownAs}} as check to see the username is appearing
+
+lab 98 & 99- Designing the template for the member profile edit page - part 1
+***
+*. copy the member-detail.component.ts content to member-edit.component.html
+*.  edit the fields to suit the edit Profile
+*.  For saving changes information box
+    - <form #editForm="ngForm" id="editForm"  >
+    - <div  *ngIf="editForm.dirty" class="alert alert-info">
+*. For Save changes button - <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block"
+*. Add updateUser method to show a alertify message
+*. <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()"  >
+        -without id-"editForm" alertify will not work because the button is not part of the form
+        - without form="editForm" on the button the alert will not work because of explanation above
+*. The alert message is still showing on the top after clicking save changes - to solve this
+      -add  @ViewChild('editForm') editForm: NgForm; on the member-edit.component.ts
+      - add   this.editForm.reset(this.user); to the updateUser on the member-edit.component.ts
+
+-Now when we click on some other link, the changes are on the edit are not persisted.
+
+
+lab 100 Adding a Candeactivate route guard
+***
+*. create  prevent-unsaved-changes.ts on the _guards
+*. goto app.module.ts and add preventUnsavedChanges to the providers array
+*. goto routes.ts add the preventUnsavedChanges to the member/edit component
+    -The above steps will add a message confirming whether the user wants to lose changes by navigating
+- but if the browser tab is closed, angular hasn't go any control of this
+- so we can do some workaround like the following
