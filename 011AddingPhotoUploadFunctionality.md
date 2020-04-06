@@ -26,7 +26,26 @@ lab 106- Using cloudinary as a photo storage solution
 *. Update migrations to our database dotnet ef database update
 
 - Now we want to use Cloudinary
-lab 107 Creating the Photos Controller Part 1
+lab 107 - Creating the Photos Controller Part 1
 *. Create new PhotosController, include attributes and bring DIs and complete controller
 *. On the constructor of the PhotosController - create cloudinary account.
 *. Create HttpPost method - AddPhotoForUser - call _cloudinary.Upload and save the result to the userFromRepo
+
+lab 108 - Creating the Photos Controller Part 2
+- We have to provide a root of object we just created. for this we have to create a HttpGet Method
+*. Create a HttpGet method named GetPhoto
+*. goto IDatingRepository and add GetPhoto method
+*. photoFromRepo will have the userdetails from navigation property so we need to create a PhotoForReturnDto
+*. use the automapper to map the photoFromRepo to the PhotoForReturnDto
+*. return OK(photo)
+*. goto AutoMapperProfile and CreateMap(Photo, PhotoForReturnDto) and also map for PhotoForCreationDto
+*. complete the AddPhotoForUser by using SaveAll
+
+lab 109 - Testing the Photo upload with postman
+*. run the application on the debug mode, goto postman -
+*. add a post request - http://localhost:5000/api/users/1/photos
+*. and set Authorization bearer token on the headers
+*. on the body add File and values as the image file to upload
+*. Click Send button and postman will throw error -
+*. to hit the debug point add the attribute [FromForm] to the AddPhotoForUser
+*.

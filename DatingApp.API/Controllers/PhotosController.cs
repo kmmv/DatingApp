@@ -35,10 +35,10 @@ namespace DatingApp.API.Controllers
         {
             _cloudinaryConfig = cloudinaryConfig;
             _mapper = mapper;
-            _repo = repo;
+            _repo = repo;       
 
            // Fill cloudinary account details on this class
-            Account acc  = new Account(
+            Account acc = new Account(
                 _cloudinaryConfig.Value.CloudName,
                 _cloudinaryConfig.Value.ApiKey,
                 _cloudinaryConfig.Value.ApiSecret
@@ -48,8 +48,26 @@ namespace DatingApp.API.Controllers
             
         }
 
+        [HttpGet("{id}" , Name = "GetPhoto")]
+
+        public async  Task<IActionResult> GetPhoto(int id)
+        {
+            // this will get the firstorDefault photo of the user which is provided by id
+            var photoFromRepo = await _repo.GetPhoto(id);
+
+            // the photoFromRepo will have all the user properties from the navigation property
+            // we dont want to send the user details so we create a PhotoForReturnDto 
+            // PhotoForDetailDtop can be also used instead of creating PhotoForReturnDto
+            // map the PhotoForReturnDtop from photoFromRepo
+            var photo = _mapper.Map<PhotoForReturnDto>(photoFromRepo);
+
+            return Ok(photo);
+
+        }
+
         [HttpPost]
-        public async Task<IActionResult> AddPhotoForUser(int userId, PhotoForCreationDto photoForCreationDto)
+        public async Task<IActionResult> AddPhotoForUser(int userId,
+                                        [FromForm]  PhotoForCreationDto photoForCreationDto)
         {
             // as we are authorising we want to check the token - copy the authorisation frm UsersController
              if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -97,7 +115,20 @@ namespace DatingApp.API.Controllers
             // save the repo
             if(await _repo.SaveAll())
             {
-                return Ok();
+                // If the save is successfull we want to return the photo object (photoToReturn)
+                // when save is successfull the SqlLite will create an Id on the photo
+                // map the photo to the PhotoForReturnDtop
+                var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
+
+                // to return the photo object (photoToReturn), the createdAtRoute call is required
+                // The CreatedAtRoute overload we are using takes 3 parameters:
+                // 1.  The name of the route to get the resource that has been created.
+                // 2.  The parameters needed to be passed to the route to get the resource (in this case the ID)
+                // 3.  The actual resource we want to return.
+                // Parameters 1 and 2 allow the response to contain the route 
+                // and params needed to get the individual response in the header 
+                // and the third parameter is the photo we are returning.
+                return CreatedAtRoute("GetPhoto", new { userId = userId, id = photo.Id }, photoToReturn);
             };
 
             return BadRequest("Could not add the photo");

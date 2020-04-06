@@ -29,6 +29,12 @@ namespace DatingApp.API.Helpers
 
 
            CreateMap<Photo, PhotosForDetailedDto>();  
+
+          // The PhotosForReturnDto is used for getting 
+           CreateMap<Photo, PhotoForReturnDto>();  
+
+           CreateMap<PhotoForCreationDto, Photo>();
+
              // the following map is used to persist changes on the member update user 
            CreateMap<UserForUpdateDto, User>();     
        }
