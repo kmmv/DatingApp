@@ -48,4 +48,29 @@ lab 109 - Testing the Photo upload with postman
 *. on the body add File and values as the image file to upload
 *. Click Send button and postman will throw error -
 *. to hit the debug point add the attribute [FromForm] to the AddPhotoForUser
-*.
+
+lab 110 - Creating the Photo upload component in Angular
+*. goto SPA app and inside the members folder
+*. add new component photo-editor and add the component to as app.module.ts
+*. Add @input Photo[] and goto to .html file using Shift+Alt+O
+*. complete the photo-editor.component.html to display the photos of the array
+*. goto the member-edit.compoenent.html and add  <app-photo-editor  under the Edit photos tab
+*. goto the photo-editor.component.css add stylings
+
+- Now we need to add the functionality to upload the photos via SPA.
+
+lab 111 - Adding a 3rd party File Uploader
+*. https://valor-software.com/ng2-file-upload/
+*. install ng2-file-upload, add variables and complete photo-editor.component.ts
+*. add FileUploadModule to the imports section of the app.Module to resolve the [uploader] error
+
+- solving CORS error
+- on the startup.cs
+- usercors must be above auth and endpoints - even though this allows everthing this is not a security risk
+- because we are not storing the credentials
+
+lab 112 Configuring the 3rd Party file Uploader
+***
+*. from the github issues page - recommend to extend our Uploader
+*. on the photo-editor.component.ts this.uploader.onAfterAddingFile = (file) = {file.withCredentials = false;}
+*. complete the html on the photo-editor.component.html

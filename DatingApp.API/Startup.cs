@@ -96,7 +96,8 @@ namespace DatingApp.API
             //km:routing
             app.UseRouting();
 
-            //km: usercors must be above auth and endpoints
+            // km: usercors must be above auth and endpoints - even though this allows everthing this is not a security risk
+            // because we are not storing the credentials 
             app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader() );
 
             app.UseAuthentication();
