@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
+using AutoMapper;
 
 namespace DatingApp.API.Controllers
 {
@@ -22,30 +23,34 @@ namespace DatingApp.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
-        private readonly IConfiguration  _config;
+        private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthRepository repo, IConfiguration  config)
+        public AuthController(IAuthRepository repo,
+                              IConfiguration config,
+                              IMapper mapper)
         {
             _repo = repo;
             _config = config;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-        
+
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
-              if (await _repo.UserExists(userForRegisterDto.Username))  return BadRequest("Username already exists");
+            if (await _repo.UserExists(userForRegisterDto.Username)) return BadRequest("Username already exists");
 
             var userToCreate = new User
             {
                 Username = userForRegisterDto.Username
             };
- 
+
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201); 
+            return StatusCode(201);
 
         }
 
@@ -56,11 +61,11 @@ namespace DatingApp.API.Controllers
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(),
                                                      userForLoginDto.Password);
 
-            if(userFromRepo == null ) return Unauthorized();
+            if (userFromRepo == null) return Unauthorized();
 
             // km: Add some pieces of information to the token, variable is Claims
             // km: token will contain two claims - userid and username
-            var  claims = new[]
+            var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.Username)
@@ -90,13 +95,20 @@ namespace DatingApp.API.Controllers
             // km: create token variable
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            // km: write the token variable
-            var result = new { token = tokenHandler.WriteToken(token)};
+            // map a userListDto for the purpose of showing the user photo on the navbar near Welcome message
+            var user = _mapper.Map<UserForListDto>(userFromRepo);
 
-            return Ok(result);
-           
+            return Ok(new
+                {
+                // km: write the token variable
+                token = tokenHandler.WriteToken(token),
+                // km: return the user along the token for displaying photo on the navbar near Welcome message
+                user
+                }          
+            );
+
         }
 
-        
+
     }
 }

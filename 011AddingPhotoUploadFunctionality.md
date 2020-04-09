@@ -106,3 +106,22 @@ lab 116 Output properties revisited
 *. Add emitter function this.getMemberPhotoChange.emit(photo.url); inside setMainPhoto
 *. Implement the (getMemberPhotoChange)="updateMainPhoto($event)" inside the member-edit.compoenent.html
 *. Implement the updateMainPhoto (from above line) insdiee member-edit.compoenent.ts
+
+-Different options for Navbar - we have to think of how to get the user photo and display on the Navbar
+- Network call is possible and pull the photo but this is expensive so we avoid this method
+- Another way we are going to use - inside AuthController along returning  claims, we return photo
+lab 117 Adding the main photo to the Nav bar
+*. Bring IMapper on the contructor of AuthController
+*. map a userListDto for the purpose of returning with the token -  _mapper.Map<UserForListDto>(userFromRepo);
+*. return the token and user.
+*. In order for the user object to contain the photo add Users.Include(p=>p.Photos) inside Login method
+*. add currentUser to the AuthService
+*. on the ngInit of the app.component.ts set AuthService.currentUser
+*. logout method inside nav.component.ts add
+        - localStorage.removeItem('user') and authService.currentUser = null;
+*. goto to navcomponent.html and inside the loggedIn() method add  image to display photos
+        - <img src="{{authService.currentUser.photoUrl}}" alt="">
+*. Lastly style the img tag to adjust the size inside nav.compoenent.class
+
+- Now we have to fix next issue - when we change the main photo using edit
+- it needs to change the nav bar photo as well

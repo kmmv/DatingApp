@@ -18,7 +18,9 @@ namespace DatingApp.API.Data
 
         public async Task<User> Login(string username, string password)
         {
-             var user = await _context.Users.FirstOrDefaultAsync(x=>x.Username == username);
+            // we are sending the photos to show main photo on the navbar as well along with user detail 
+             var user = await _context.Users.Include(p=>p.Photos)
+                                        .FirstOrDefaultAsync(x=>x.Username == username);
              if(user==null) return null; 
 
              if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt)) return null ;
