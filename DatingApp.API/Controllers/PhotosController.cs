@@ -135,6 +135,39 @@ namespace DatingApp.API.Controllers
 
         }
 
+        // Another POST method to update the photo as main photo
+        // We have used another POST method for RESTful conformity and for the cleaner code
+        [HttpPost("{id}/setMain")]
+        public async Task<IActionResult> SetMainPhoto(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) )
+                return Unauthorized();
+            
+            var user = await _repo.GetUser(userId);
+
+            if(!user.Photos.Any(p=>p.Id == id))
+                return Unauthorized();
+            
+            // get photo object
+            var photoFromRepo = await _repo.GetPhoto(id);
+
+            if(photoFromRepo.IsMain)
+                return BadRequest("This is already the main photo");
+            
+            //  get current main photo from repo
+             var currentMainPhoto = await _repo.GetMainPhotoForUser(userId);
+            // set the current main photo isMain flag to false
+             currentMainPhoto.IsMain = false;
+
+            // set the photoFromRepo as the main photo
+             photoFromRepo.IsMain = true;
+
+             if(await _repo.SaveAll())
+                return NoContent();
+                
+            return BadRequest("Could not set photo to main");
+            
+        }
 
     }
 }

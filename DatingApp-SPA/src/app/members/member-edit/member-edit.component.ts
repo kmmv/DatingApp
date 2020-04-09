@@ -43,8 +43,9 @@ unLoadNotification($event: any) {
     }, error => {
       this.alertify.error(error);
     });
-
-
   }
 
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
+  }
 }

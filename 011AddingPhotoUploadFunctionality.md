@@ -74,3 +74,35 @@ lab 112 Configuring the 3rd Party file Uploader
 *. from the github issues page - recommend to extend our Uploader
 *. on the photo-editor.component.ts this.uploader.onAfterAddingFile = (file) = {file.withCredentials = false;}
 *. complete the html on the photo-editor.component.html
+
+
+- To display which is the main photo
+-
+lab 113 Adding the Set Main photo functionality
+*. on the API controller create POST method SetMainPhoto on the PhotoController
+*. Add GetMainPhotoForUser on the IDatingRepository to support SetMainPhoto
+*. After completing SetMainPhoto, update the main photo by testing using PostMan
+
+lab 114 Adding the Set Main photo functionary on the SPA
+*. On the SPA, src\_services\user.services.ts ass setMainPhoto
+*. Goto photo-editor.component.ts import userService in the constructor
+*. And add setMainPhoto to set the photo
+*. goto photo-editor.component.html
+*. add (click)="setMainPhoto(photo)" , disabled and styling functionality to the button
+
+- now the main photo is set but this is only visible when the browser is refreshed
+- array filter method, because it is returning an array we have to set an element by specifying [0]
+
+lab 115  Using the array filter method to provide instant feedback in the SPA
+*. inside the subscribe method of setMainPhoto
+*. The button is changed to green and the currentMain variable is set by the following code
+*. this.currentMain = this.photos.filter(p => p.isMain === true)[0];
+
+- Now we need to display the photo on the main photo box without refreshing the browser
+
+lab 116 Output properties revisited
+*. ON the photo-editor.component add an output property  
+*. @Output() getMemberPhotoChange = new EventEmitter<string>();
+*. Add emitter function this.getMemberPhotoChange.emit(photo.url); inside setMainPhoto
+*. Implement the (getMemberPhotoChange)="updateMainPhoto($event)" inside the member-edit.compoenent.html
+*. Implement the updateMainPhoto (from above line) insdiee member-edit.compoenent.ts

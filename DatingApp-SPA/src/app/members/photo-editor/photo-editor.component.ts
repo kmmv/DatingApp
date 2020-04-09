@@ -1,9 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Photo } from 'src/app/_models/photo';
 import { FileUploader } from 'ng2-file-upload';
 import { AuthService } from 'src/app/_services/auth.service';
 import { environment } from 'src/environments/environment';
 import { reduce } from 'rxjs/operators';
+import { UserService } from 'src/app/_services/user.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+
 
 @Component({
   selector: 'app-photo-editor',
@@ -12,11 +15,17 @@ import { reduce } from 'rxjs/operators';
 })
 export class PhotoEditorComponent implements OnInit {
 @Input() photos: Photo[];
+@Output() getMemberPhotoChange = new EventEmitter<string>();
+
 uploader: FileUploader;
 hasBaseDropZoneOver = false;
 baseUrl = environment.apiUrl;
+// variable to hold the current photo
+currentMain: Photo;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private userService: UserService,
+              private alertify: AlertifyService) {}
 
   ngOnInit() {
     this.initializeUploader();
@@ -62,6 +71,28 @@ baseUrl = environment.apiUrl;
         }
     };
 
+    }
+
+    // this method will set the main photo
+    setMainPhoto(photo: Photo) {
+      this.userService
+      // the below line will set the main photo invoking the userservice method
+      .setMainPhoto(this.authService.decodedToken.nameid, photo.id)
+      .subscribe(
+          () => {
+            // The following code is required to update the button (to green)
+            // array filter method, because it is returning an array we have to set an element by specifying [0]
+            this.currentMain = this.photos.filter(p => p.isMain === true)[0];
+            this.currentMain.isMain = false;
+            photo.isMain = true;
+            this.getMemberPhotoChange.emit(photo.url);
+
+            // The following will set the photo
+            console.log('Successfully set to main');
+          }, error => {
+             this.alertify.error(error);
+          }
+      );
     }
 
 }
