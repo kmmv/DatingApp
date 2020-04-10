@@ -123,5 +123,24 @@ lab 117 Adding the main photo to the Nav bar
         - <img src="{{authService.currentUser.photoUrl}}" alt="">
 *. Lastly style the img tag to adjust the size inside nav.compoenent.class
 
+118 Any to Any component communicate in Angular
 - Now we have to fix next issue - when we change the main photo using edit
 - it needs to change the nav bar photo as well
+- Sometimes we need to communicate to another component where there is no relationship
+- Services are designed to communication with any component
+- We need to create a  (Behaviour  Subject ) which is a type of Observable
+
+119 Using BehaviourSubject to add any to any communication to our app
+*. goto Authservice.ts import {BehaviorSubject } from 'rxjs'
+*. create photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+*. add the user.png under assets
+*. create currentPhotoUrl = this.photoUrl.asObservable();
+*. Add   changeMemberPhoto(photoUrl: string) to the AuthService login Method
+*. goto nav.component.ts and add photoUrl
+*. in ngOnInit add this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+*. goto nav.component.html use photoUrl on img tag
+*. goto app.component.ts add this.authService.changeMemberPhoto(user.photoUrl); inside ngOnInit
+*. goto member-edit.component add variable photoUrl
+*. goto NgInit and this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+*. goto member-MemberEditComponent.html change user.photoUrl to photoUrl inside subscribe method
+*. set currentuser.photourl and localhost inside the subscribe method

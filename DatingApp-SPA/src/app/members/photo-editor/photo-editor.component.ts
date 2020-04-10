@@ -85,7 +85,12 @@ currentMain: Photo;
             this.currentMain = this.photos.filter(p => p.isMain === true)[0];
             this.currentMain.isMain = false;
             photo.isMain = true;
-            this.getMemberPhotoChange.emit(photo.url);
+            // this.getMemberPhotoChange.emit(photo.url);
+            this.authService.changeMemberPhoto(photo.url);
+
+            // retain after refresh
+            this.authService.currentUser.photoUrl = photo.url;
+            localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
 
             // The following will set the photo
             console.log('Successfully set to main');
