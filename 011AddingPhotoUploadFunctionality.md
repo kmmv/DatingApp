@@ -150,4 +150,8 @@ lab 120 Adding the delete photo function to the API
 *. copy the first half of SetMainPhoto unilt photoFromRepo.IsMain
 *. complete DeletePhoto method
 *. check cloudinary documentation how to delete photo - this requires a public_id and destroy method
-*.
+
+lab 121 Adding the delete photo functionality to the SPA
+*. add deletePhoto on the user.service.ts
+*. goto photo-editor.component.ts and deletePhoto (subscribe and arrow function)
+*.  goto photo-editor.compoenent.html 
