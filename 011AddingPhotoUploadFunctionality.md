@@ -130,7 +130,7 @@ lab 117 Adding the main photo to the Nav bar
 - Services are designed to communication with any component
 - We need to create a  (Behaviour  Subject ) which is a type of Observable
 
-119 Using BehaviourSubject to add any to any communication to our app
+lab 119 Using BehaviourSubject to add any to any communication to our app
 *. goto Authservice.ts import {BehaviorSubject } from 'rxjs'
 *. create photoUrl = new BehaviorSubject<string>('../../assets/user.png');
 *. add the user.png under assets
@@ -144,3 +144,10 @@ lab 117 Adding the main photo to the Nav bar
 *. goto NgInit and this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
 *. goto member-MemberEditComponent.html change user.photoUrl to photoUrl inside subscribe method
 *. set currentuser.photourl and localhost inside the subscribe method
+
+lab 120 Adding the delete photo function to the API
+*. goto PhotosController add HttpDelete method named DeletePhoto
+*. copy the first half of SetMainPhoto unilt photoFromRepo.IsMain
+*. complete DeletePhoto method
+*. check cloudinary documentation how to delete photo - this requires a public_id and destroy method
+*.

@@ -169,5 +169,48 @@ namespace DatingApp.API.Controllers
             
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePhoto(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) )
+                return Unauthorized();
+            
+            var user = await _repo.GetUser(userId);
+
+            if(!user.Photos.Any(p=>p.Id == id))
+                return Unauthorized();
+            
+            // get photo object
+            var photoFromRepo = await _repo.GetPhoto(id);
+
+            if(photoFromRepo.IsMain)
+                return BadRequest("You cannot delete your main photo");
+
+            // the photos in cloudinary will have public ID
+            if (photoFromRepo.PublicId != null )
+            {
+                // to delete photo we have to use cloudinary destroy method - ref documentation
+                // we need DeletionParams variable to pass to the Destroy method
+                var deleteParams = new DeletionParams(photoFromRepo.PublicId);
+                var result = _cloudinary.Destroy(deleteParams);
+
+                // cloudinary returns a string "ok" if the destroy method is successful
+                if(result.Result == "ok") {
+                    _repo.Delete(photoFromRepo);
+                }
+
+            }
+            
+            // there are photos which are stored in random user APIs
+            if (photoFromRepo.PublicId == null )
+            {
+                _repo.Delete(photoFromRepo);                
+            }
+
+            if( await _repo.SaveAll()) return Ok();
+
+            return BadRequest(" Failed to delete the photo");
+
+        }
     }
 }
