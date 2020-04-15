@@ -154,4 +154,6 @@ lab 120 Adding the delete photo function to the API
 lab 121 Adding the delete photo functionality to the SPA
 *. add deletePhoto on the user.service.ts
 *. goto photo-editor.component.ts and deletePhoto (subscribe and arrow function)
-*.  goto photo-editor.compoenent.html 
+*.  goto photo-editor.compoenent.html
+
+End of section 11
