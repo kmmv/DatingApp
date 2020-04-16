@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -19,14 +19,43 @@ registerForm: FormGroup;
   model: any = {};
 
   // km : to consume the service
-  constructor(private authService: AuthService, private alertify: AlertifyService) { }
+  constructor(private authService: AuthService,
+              private alertify: AlertifyService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
-     this.registerForm = new FormGroup({
+    /* this.registerForm = new FormGroup({
         username: new FormControl('Hello', Validators.required),
         password : new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
         confirmPassword : new FormControl('', Validators.required)
-     }, this.passwordMatchValidator);
+     }, this.passwordMatchValidator);*/
+
+     this.createRegisterForm();
+  }
+
+
+  createRegisterForm() {
+    // this.fb.group is equivalent to new FormGroup created on the ngInit
+    this.registerForm = this.fb.group(
+      {
+        gender: ['male'],
+        username: ['', Validators.required],
+        knownAs: ['', Validators.required],
+        dateOfBirth: [null, Validators.required],
+        city: ['', Validators.required],
+        country: ['', Validators.required],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(8)
+          ]
+        ],
+        confirmPassword: ['', Validators.required]
+      },
+      { validator: this.passwordMatchValidator }
+    );
   }
 
   // Custome validator

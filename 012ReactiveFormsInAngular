@@ -22,3 +22,12 @@ lab 127: Providing Validation feedback to the user
 *. goto register.component.html and add ngClass for validation for showing up invalid-feedback div
 *. for password field do 3 ngif conditions for checking required, min and max length  for showing up invalid-feedback div
 *. the confirm password is bit complex -  1st is required and next is mismatch
+
+lab 128: Using the Reactive Forms FormBuilder Service
+*. goto register.component.ts and add DI on the contrcutor fb:FormBuilder
+*. add a new method createRegisterForm and (remove existing code from ngInit) and invoke createRegisterForm]
+
+lab: 129: Expanding the Registration form
+*. goto register.component.ts. add gender, , , to the createRegisterForm
+*. goto register.component.html add the gender radio button, DOB, city and country which is provided on lesson snippet
+*. Make the register button disable if the form is invalid
