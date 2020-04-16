@@ -1,0 +1,24 @@
+Section 12 - Reactive Forms in Angular
+
+- we were using templates on the project. now we will use reactive Forms
+- reactive forms will help us to design forms on the .ts components itself
+
+lab 124 Introduction to Reactive forms in Angular
+*. on SPA, goto register/register.component.ts
+*. create a field registerForm: FormGroup;
+*. create FormControls inside FormGroup on the ngInit
+*. goto app.module.ts Add ReactiveFormsModule on the imports Section
+*. now update the register.component.html with FormGroup and other changes
+
+lab 125: Validation in Reactive forms
+*. goto register.component.ts add validator FormControl('Hello', Validators.required
+
+- for password we need to create a custom validator
+lab 126: Custom Validators in Reactive forms
+*. goto register.component.ts and add passwordMatchValidator
+*. add , this.passwordMatchValidator); to the FormGroup on the ngOnInut
+
+lab 127: Providing Validation feedback to the user
+*. goto register.component.html and add ngClass for validation for showing up invalid-feedback div
+*. for password field do 3 ngif conditions for checking required, min and max length  for showing up invalid-feedback div
+*. the confirm password is bit complex -  1st is required and next is mismatch
