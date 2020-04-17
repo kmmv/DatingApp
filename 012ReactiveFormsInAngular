@@ -32,7 +32,7 @@ lab 129: Expanding the Registration form
 *. goto register.component.html add the gender radio button, DOB, city and country which is provided on lesson snippet
 *. Make the register button disable if the form is invalid
 
--polyfill.ts allow us to uncomment some functionliaties to be supported on some browsers
+-polyfill.ts allow us to uncomment some functionlities to be supported on some browsers
 
 lab 130: Handling Dates in Forms
 *. check documentation of datepicker on ngx-bootstrap, https://valor-software.com/ngx-bootstrap/#/datepicker
@@ -41,3 +41,13 @@ lab 130: Handling Dates in Forms
 *. goto register.component.html for the datepicker, change the type to text and bsDatepicker
 *. now we need to change the theme - goto register.component.ts and add bsConfig: Partial<BsDatepickerConfig>;
 *. initialize bsConfig in ngOnInit and add bsConfig on html
+
+lab 131: Updating the Register method in the API
+*. goto API - update UserForRegisterDTO to add more fields
+*. goto AutoMapperProfile.cs and add User to UserForRegisterDTO mapping
+*. goto AuthContoller and add var userToCreate = _mapper.Map<User>(userForRegisterDto);
+*. and to crate user add CreatedAtRoute
+
+lab 132: Completing the Registration implementation
+*. on the register.component.ts complete the register and login and navigate to members page
+*. on the authserice.ts change the register method to accept user model

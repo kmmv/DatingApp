@@ -43,14 +43,26 @@ namespace DatingApp.API.Controllers
 
             if (await _repo.UserExists(userForRegisterDto.Username)) return BadRequest("Username already exists");
 
-            var userToCreate = new User
+            /*var userToCreate = new User
             {
                 Username = userForRegisterDto.Username
-            };
+            };*/
 
+            // We map from the Source (in the case of Registering the UserForRegisterDto) on the left to the User (destination) on the right.
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
+
+            // use of userForRegisterDto
+            //We don't want to rely on client validation alone as this can be easily bypassed.  
+            // We always want to validate the data coming into our server even if it does mean duplicating the effort here.
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);
+            // we want to send only selected information (excluding password)
+            var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+
+            //reates a Microsoft.AspNetCore.Mvc.CreatedAtRouteResult object that 
+            //produces a Microsoft.AspNetCore.Http.StatusCodes.Status201Created response.
+            // CreatedAtRoute params: controller method, controller method value and the details to return
+            return CreatedAtRoute("GetUser", new {controller = "Users", Id= createdUser.Id}, userToReturn);
 
         }
 
