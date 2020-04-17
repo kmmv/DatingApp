@@ -27,7 +27,17 @@ lab 128: Using the Reactive Forms FormBuilder Service
 *. goto register.component.ts and add DI on the contrcutor fb:FormBuilder
 *. add a new method createRegisterForm and (remove existing code from ngInit) and invoke createRegisterForm]
 
-lab: 129: Expanding the Registration form
+lab 129: Expanding the Registration form
 *. goto register.component.ts. add gender, , , to the createRegisterForm
 *. goto register.component.html add the gender radio button, DOB, city and country which is provided on lesson snippet
 *. Make the register button disable if the form is invalid
+
+-polyfill.ts allow us to uncomment some functionliaties to be supported on some browsers
+
+lab 130: Handling Dates in Forms
+*. check documentation of datepicker on ngx-bootstrap, https://valor-software.com/ngx-bootstrap/#/datepicker
+*. goto app.module.ts add BrowserAnimationsModule and BsDatepickerModule.forRoot() on the imports
+*. goto styles.css and import bs-datepicker.css
+*. goto register.component.html for the datepicker, change the type to text and bsDatepicker
+*. now we need to change the theme - goto register.component.ts and add bsConfig: Partial<BsDatepickerConfig>;
+*. initialize bsConfig in ngOnInit and add bsConfig on html
