@@ -5,13 +5,18 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
+using DatingApp.API.Helpers;
 using DatingApp.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace DatingApp.API.Controllers
 {
 
+    // The service filter above will invoke the LogUserActivity service referenced on the startup class
+    // The logUserActivity will capture Last Active datetime whenever the user interacts with any of the methods below
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]

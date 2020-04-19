@@ -13,3 +13,6 @@ lab 136 - Using a TimeAgo pipe for dates in Angular
 
 - now we need to update the last active whenever the user logins
 lab - 137 Using Action Filters
+*. on API goto Helpers folder add LogUserActivity.cs ngClass
+*. inherit the LogUserActivity from IAsyncActionFilter, using Microsoft.AspNetCore.Mvc.Filters;
+*. implement LogUserActivity
