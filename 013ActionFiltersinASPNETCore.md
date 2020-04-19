@@ -16,3 +16,6 @@ lab - 137 Using Action Filters
 *. on API goto Helpers folder add LogUserActivity.cs ngClass
 *. inherit the LogUserActivity from IAsyncActionFilter, using Microsoft.AspNetCore.Mvc.Filters;
 *. implement LogUserActivity
+*. Inorder to make user of LogUserActivity we have to add this class as services in the startup
+*. goto startup.cs services.AddScoped<LogUserActivity>();
+*. goto usersController.cs  [ServiceFilter(typeof(LogUserActivity))]
