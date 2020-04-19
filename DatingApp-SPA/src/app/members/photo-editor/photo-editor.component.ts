@@ -68,6 +68,16 @@ currentMain: Photo;
           };
           // push the photo into the photos array
           this.photos.push(photo);
+          // we want to upload profile photo as soon as we upload a photo
+          // check if the photo is main
+          if (photo.isMain) {
+            this.authService.changeMemberPhoto(photo.url);
+
+            // retain after refresh
+            this.authService.currentUser.photoUrl = photo.url;
+            localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+          }
+
         }
     };
 

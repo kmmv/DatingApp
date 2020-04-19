@@ -51,3 +51,7 @@ lab 131: Updating the Register method in the API
 lab 132: Completing the Registration implementation
 *. on the register.component.ts complete the register and login and navigate to members page
 *. on the authserice.ts change the register method to accept user model
+
+lab 133: Fixing the Photos issue for newly registered users
+*. SPA project on member-card, member-edit, member-detail, nav.component.html add  user.photoUrl || '../../assets/user.png' }}"
+*. We want to update the Main photo as soon as we upload so goto photo-editor.component.ts
