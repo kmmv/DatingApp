@@ -29,10 +29,12 @@
           </div>
           <div>
             <strong>Last Active</strong>
-
+            <!-- no default time ago pipe we have to import a library named angular ngx-timeago  pipe -->
+            <p>{{user.lastActive | timeago }}</p>
           </div>
           <div>
             <strong>Member since</strong>
+             <!-- action pipe to format the date to medium date-->
             <p>{{ user.created | date: 'mediumDate' }}</p>
           </div>
         </div>
