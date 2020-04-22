@@ -29,3 +29,21 @@ lab 142 Setting up the paging helper class
 *. goto Extensions add camelCaseFormatter.ContractResolver
 *. test the modifications on Postman using pageNumber and pageSize
       - http://localhost:5000/api/users?pageNumber=2&pageSize=3
+
+lab 143 Setting up pagination in the SPA
+***
+*. On the SPA, create a new interface Pagination inside _models
+*. On the user.service.ts modify getUsers to get paginatedResult
+*. On the member-list.resolver.ts return this.userService.getUsers(this.pagenNumber, this.pageSize)
+*. On the member-list.component.ts
+
+- Now we need to add pagination to the browser
+
+lab 144 Using nix-bootstrap pagination module
+***
+*. goto https://valor-software.com/ngx-bootstrap/#/pagination
+*. add pagination to the member-list.component.html
+*. goto appmodule.ts and add PaginationModule.forRoot()
+*. goto member-list.component.ts and add a pagination variable
+      - implement loadUsers with pagination and call the loadUsers from pageChanged
+*. on the MemberListComponent.html make sure that the pageChanged event is invoked
