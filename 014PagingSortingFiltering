@@ -1,0 +1,31 @@
+
+139 Paring in ASP.NET Web API
+***
+Paging by passed by query string
+always page results
+Stored query commands in variable
+Execution is deferred
+IQueryable<T> creates an expression tree
+Execution: ToListAsync(), ToArrayAsync(), ToDictionary()
+Singleton queries
+
+
+lab 140-141 Adding a PagedList class
+***
+*. on API goto Helpers folder and create a PagedList class
+*. for pagination headers add helper class goto Helpers folder create PaginationHeader class
+*. goto the extentions.cs add AddPagination function
+*. Now API needs to send back info from UsersController
+    -to do this we create another helper class named UserParams
+
+lab 142 Setting up the paging helper class
+***
+*. goto IDatingRepository and modify the GetUsers method (change the IEnumerable to PagedList)
+        - and return  await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
+*. goto UsersController, modify the GetUsers to receive PaginationList instead of usersToReturn
+*. Debug the http://localhost:5000/api/users on Postman to view how the PagedList is created
+*. On the results on postman under Headers  the Pagination info is displayed
+      - Now the pagination information is in TitleCase we need to change it to CamelCase
+*. goto Extensions add camelCaseFormatter.ContractResolver
+*. test the modifications on Postman using pageNumber and pageSize
+      - http://localhost:5000/api/users?pageNumber=2&pageSize=3
