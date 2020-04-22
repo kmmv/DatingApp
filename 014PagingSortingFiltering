@@ -47,3 +47,11 @@ lab 144 Using nix-bootstrap pagination module
 *. goto member-list.component.ts and add a pagination variable
       - implement loadUsers with pagination and call the loadUsers from pageChanged
 *. on the MemberListComponent.html make sure that the pageChanged event is invoked
+
+lab 145 Filtering in the API
+***
+*. on the API goto userParams.cs and add UserId and Gender
+*. goto UsersController on the Httpget method
+      - obtain values for userParams.userId   and userParams.Gender
+*. goto IDatingRepository.cs add filtering parameters to filter
+*. goto Postman and test http://localhost:5000/api/users?gender=female
