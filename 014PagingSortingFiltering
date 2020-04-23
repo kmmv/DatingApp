@@ -78,5 +78,17 @@ lab 148 Sorting results in the API
 *. goto IDatingRepository add OrderbyDecending  and implement if userParams.Orderby
 *. Test the orderby on Postman http://localhost:5000/api/users?gender=female&orderBy=created
 
+lab 149 Adding the Sorting functionality to the SPA
+***
+*. goto ngx-bootstrap goto app.module.ts and add buttonsModule.forRoot
+*. goto member-list.component.ts and add this.userParams.orderBy = "lastActive"; on ngOnInit
+*. goto memvber-list.component.html and add btn-group float-right after resetFilters button
+*. add ngModel and click event to the btn-group which is created above
+*. goto user.service.ts and add   params = params.append('orderBy', userParams.orderBy); to userParams
+
+
+
+
+
 
         -

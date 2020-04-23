@@ -10,7 +10,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { TimeagoModule } from 'ngx-timeago';
-import { PaginationModule } from 'ngx-bootstrap';
+import { PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -70,6 +70,7 @@ export function tokenGetter() {
       RouterModule.forRoot(appRoutes),
       TimeagoModule.forRoot(),
       PaginationModule.forRoot(),
+      ButtonsModule.forRoot(),
       NgxGalleryModule,
       FileUploadModule,
       JwtModule.forRoot({
