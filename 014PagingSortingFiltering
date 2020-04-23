@@ -55,3 +55,9 @@ lab 145 Filtering in the API
       - obtain values for userParams.userId   and userParams.Gender
 *. goto IDatingRepository.cs add filtering parameters to filter
 *. goto Postman and test http://localhost:5000/api/users?gender=female
+
+lab 146 Adding additional filtering parameters to the API
+***
+*. On the API add MinAge and MaxAge on the UserParams
+*. On the DatingRepository add MinAge and MaxAge inside GetUsers method
+*. Test the age filter on Postman  http://localhost:5000/api/users?minAge=24&maxAge=32
