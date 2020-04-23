@@ -72,5 +72,11 @@ lab 147 Adding filtering functionality to the SPA
 *. on the loadUsers add this.userParams inside the GetUsers
 *. userParams is not defined so goto user.service.ts and add userParams
 
+lab 148 Sorting results in the API
+***
+*. on the API go to userParams and add OrderBy
+*. goto IDatingRepository add OrderbyDecending  and implement if userParams.Orderby
+*. Test the orderby on Postman http://localhost:5000/api/users?gender=female&orderBy=created
+
 
         -
