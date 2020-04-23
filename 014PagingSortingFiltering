@@ -61,3 +61,16 @@ lab 146 Adding additional filtering parameters to the API
 *. On the API add MinAge and MaxAge on the UserParams
 *. On the DatingRepository add MinAge and MaxAge inside GetUsers method
 *. Test the age filter on Postman  http://localhost:5000/api/users?minAge=24&maxAge=32
+
+lab 147 Adding filtering functionality to the SPA
+***
+*. On the SPA, on the MemberListComponent add html codesnippet to add filter inputs and buttons
+*. On the MemberListComponent.ts  add variable user, genderList and userParams
+*. add filtering options on ngOnInit
+*. goto MemberListComponent.html add ngForm, ngModel etc
+*. goto MemberListComponent.ts add resetFilters method
+*. on the loadUsers add this.userParams inside the GetUsers
+*. userParams is not defined so goto user.service.ts and add userParams
+
+
+        -
