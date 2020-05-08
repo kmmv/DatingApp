@@ -92,5 +92,12 @@ namespace DatingApp.API.Data
             // If this returns more than 0 that means the number of saves -0 mean no save
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<Like> GetLike(int userId, int recipientId)
+        {
+            return await _context.Likes.FirstOrDefaultAsync(u =>
+                u.LikerId == userId && u.LikeeId == recipientId);
+        }
+
     }
 }

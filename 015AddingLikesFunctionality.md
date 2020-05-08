@@ -23,3 +23,6 @@ We use Fluent API
 
 154 Adding the Send Like functionality to the SPA
 ****
+*. On the API implement GetLike on the DatingRepository
+*. On the UserController implement the LikeUser HttpPost method
+*. Test on PostMan
