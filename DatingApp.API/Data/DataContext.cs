@@ -14,5 +14,30 @@ namespace DatingApp.API.Data
 
         public DbSet<Photo>  Photos {get;set;}
         
+        public DbSet<Like> Likes { get; set; }
+
+          protected override void OnModelCreating(ModelBuilder builder)
+        {
+            // add PrimaryKey with LikerId and LikkeId
+            builder.Entity<Like>()
+                .HasKey(k => new { k.LikerId, k.LikeeId });
+
+            // Create relationship
+            // Foreign key which goes back to the user's key
+            // DeleteBehavior.Restrict avoid cascade delete which means deleting Like will not delete user
+            builder.Entity<Like>()
+               .HasOne(u => u.Likee)
+               .WithMany(u => u.Likers)
+               .HasForeignKey(u => u.LikeeId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Like>()
+               .HasOne(u => u.Liker)
+               .WithMany(u => u.Likees)
+               .HasForeignKey(u => u.LikerId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+          
+        }
     }
 }
