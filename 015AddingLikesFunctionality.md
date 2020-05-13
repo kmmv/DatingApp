@@ -26,3 +26,13 @@ We use Fluent API
 *. On the API implement GetLike on the DatingRepository
 *. On the UserController implement the LikeUser HttpPost method
 *. Test on PostMan
+
+Now we have to find the users who have liked / or liked by the current user
+
+lab 155 Retrieving the list of users liked and liked by user
+***
+* Goto API add likees and likers to the UserParams
+*. goto DatingRepository, add private method GetUserLikes
+*. on the GetUSers add if (userParams.Likers)
+
+
