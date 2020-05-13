@@ -35,4 +35,10 @@ lab 155 Retrieving the list of users liked and liked by user
 *. goto DatingRepository, add private method GetUserLikes
 *. on the GetUSers add if (userParams.Likers)
 
+lab 156 Adding the Send like functionality to the SPA
+***
+*. Goto SPA, on the user.service.ts add sendLike funtionlity
+*. Goto member card component, bring authservice, userservice, alertify on the constructor
+*. On the  member card component Add sendLike(id: number) 
+*. on the member card component.html add (click)="sendLike(user.id)
 
