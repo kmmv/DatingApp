@@ -12,11 +12,11 @@ kill -9 <<PID>>
 Prerequisite
 ************
 
-install dotnet core 3.0
+
 install vscode
 install node
 install npm (comes with node)
-install sqllite
+install sqllite (Install SQL Browser for mac https://sqlitebrowser.org/dl/)
 
 Todo: Walking skelton
   DB->ORM->API->SPA
@@ -27,7 +27,7 @@ DotNet core WebAPI using DotNetCLI
 
 Create new webapi application
 *****************************
-  dotnet new webapi -n DatingApp.API
+  dotnet new webapi -n DatingApp.API/Users/krishna/Projects/Github/DatingApp/003Security.md
 
 Tip: Add vscode to the path cmd+shiftP and type code
 
