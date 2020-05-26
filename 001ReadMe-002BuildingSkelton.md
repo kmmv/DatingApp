@@ -7,16 +7,15 @@ Major Tips
 To find and kill background process
 lsof -i @localhost:5000
 kill -9 <<PID>>
-
-
+To run SPA (when pulling fresh repo from Github) - npm install, ng serve
+/Users/krishna/Projects/Github/DatingApp/015AddingLikesFunctionality.md
 Prerequisite
 ************
-
-
 install vscode
 install node
 install npm (comes with node)
 install sqllite (Install SQL Browser for mac https://sqlitebrowser.org/dl/)
+install dotnet 3.0
 
 Todo: Walking skelton
   DB->ORM->API->SPA

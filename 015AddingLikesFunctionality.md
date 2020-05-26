@@ -39,6 +39,14 @@ lab 156 Adding the Send like functionality to the SPA
 ***
 *. Goto SPA, on the user.service.ts add sendLike funtionlity
 *. Goto member card component, bring authservice, userservice, alertify on the constructor
-*. On the  member card component Add sendLike(id: number) 
+*. On the  member card component Add sendLike(id: number)
 *. on the member card component.html add (click)="sendLike(user.id)
 
+lab 157 Creating the lists component
+***
+*. Goto SPA, on the user.service.ts add likesParam on the getUsers component
+*. Add likesParam == 'Likers' param.append conditions
+*. Create lists.resolver.ts inside the resolvers folder
+*. Implement lists.resolver (copy from member-list.resolver.ts)
+*.  goto routes.ts and add resolve to the  { path: 'lists', component: ListsComponent, resolve:{ users: ListsResolver} }
+*. goto appmodule.ts and import ListsResolver to the providers array
